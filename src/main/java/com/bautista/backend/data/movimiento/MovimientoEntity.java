@@ -1,5 +1,7 @@
 package com.bautista.backend.data.movimiento;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -15,20 +17,23 @@ public class MovimientoEntity implements Serializable {
     @Column
     private String concepto;
 
-    @Column
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private TipoMovimiento tipo;
 
-    @Column
+    @Column(nullable = false)
     private Float valor;
 
-    @Column
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private DestinoMovimiento caja_banco;
 
     @Column
-    @GeneratedValue
+    @CreationTimestamp
     private Date fecha;
+
+    @Column
+    private String movimiento_id;
 
     public long getId() {
         return id;
@@ -77,4 +82,8 @@ public class MovimientoEntity implements Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    public String getMovimiento_id() { return movimiento_id; }
+
+    public void setMovimiento_id(String movimiento_id) { this.movimiento_id = movimiento_id; }
 }

@@ -3,25 +3,19 @@ package com.bautista.backend.model.movimiento;
 import com.bautista.backend.data.movimiento.DestinoMovimiento;
 import com.bautista.backend.data.movimiento.TipoMovimiento;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.UUID;
 
-public class MovimientoResponseModel {
+public class MovimientoRequestModel {
 
     private String concepto;
+    @NotNull(message = "Es obligatorio introducir un tipo de movimiento: ingreso/gasto")
     private TipoMovimiento tipo;
+    @NotNull(message = "Es obligatorio introducir un valor")
     private Float valor;
+    @NotNull(message = "Es obligatorio introducir destino al movimiento: caja/banco")
     private DestinoMovimiento caja_banco;
     private Date fecha;
-    private String movimientoId;
-
-    public String getMovimientoId() {
-        return movimientoId;
-    }
-
-    public void setMovimientoId(String movimientoId) {
-        this.movimientoId = movimientoId;
-    }
 
     public String getConcepto() {
         return concepto;
