@@ -4,6 +4,8 @@ package com.bautista.backend.data.dinero;
  * @author Julián Bautista Vélez
  */
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
@@ -23,8 +25,11 @@ public class DineroEntity implements Serializable {
     private float caja;
 
     @Column
-    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date fecha;
+
+    @Column
+    private String dinero_id;
 
     public float getBanco() {
         return banco;
@@ -49,4 +54,12 @@ public class DineroEntity implements Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    public long getId() { return id; }
+
+    public void setId(long id) { this.id = id; }
+
+    public String getDinero_id() { return dinero_id; }
+
+    public void setDinero_id(String dinero_id) { this.dinero_id = dinero_id; }
 }

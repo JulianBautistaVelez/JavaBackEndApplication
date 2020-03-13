@@ -1,8 +1,16 @@
 package com.bautista.backend.service;
 
-import com.bautista.backend.model.dinero.DineroResponseModel;
+import java.util.List;
 
-public interface ServiceInterface<T> {
+/**
+ * Service so serve as middle step from controller to data
+ * Map from entities to response or request objects models
+ * and the opposite
+ * @param <T> Object Response Model
+ * @param <T2> Object Request Model
+ */
+public interface ServiceInterface<T, T2> {
     T getLastEntry();
-    T getAll();
+    List<T> getAll();
+    void insert(T2 object);
 }

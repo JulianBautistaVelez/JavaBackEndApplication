@@ -10,12 +10,13 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 @Service
-public class MovimientoService implements ServiceInterface {
+public class MovimientoService
+        implements ServiceInterface<MovimientoResponseModel, MovimientoRequestModel> {
 
     @Autowired
     private MovimientoRepository repository;
@@ -37,15 +38,16 @@ public class MovimientoService implements ServiceInterface {
     @Override
     public List<MovimientoResponseModel> getAll() {
         List<MovimientoEntity> dbData = repository.findAllBy();
-        List<MovimientoResponseModel> response = new ArrayList<>();
-        response = modelMapper.map(dbData, response.getClass());
-        System.out.println(response.get(0).getClass());
+        List<MovimientoResponseModel> response =
+                Arrays.asList(modelMapper.map(dbData, MovimientoResponseModel[].class));
         return response;
     }
 
+    @Override
     public void insert(MovimientoRequestModel movimiento){
         MovimientoEntity movimientoEntity = modelMapper.map(movimiento, MovimientoEntity.class);
         movimientoEntity.setMovimiento_id(UUID.randomUUID().toString());
         repository.save(movimientoEntity);
     }
+
 }

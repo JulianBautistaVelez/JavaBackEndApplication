@@ -1,4 +1,4 @@
-package com.bautista.backend.controller;
+package com.bautista.backend.controller.dinero;
 
 import com.bautista.backend.model.dinero.DineroResponseModel;
 import com.bautista.backend.service.dinero.DineroService;

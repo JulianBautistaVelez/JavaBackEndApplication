@@ -4,7 +4,6 @@ import com.bautista.backend.data.movimiento.DestinoMovimiento;
 import com.bautista.backend.data.movimiento.TipoMovimiento;
 
 import java.util.Date;
-import java.util.UUID;
 
 public class MovimientoResponseModel {
 
@@ -13,14 +12,14 @@ public class MovimientoResponseModel {
     private Float valor;
     private DestinoMovimiento caja_banco;
     private Date fecha;
-    private String movimientoId;
+    private String movimiento_id;
 
-    public String getMovimientoId() {
-        return movimientoId;
+    public String getMovimiento_id() {
+        return movimiento_id;
     }
 
-    public void setMovimientoId(String movimientoId) {
-        this.movimientoId = movimientoId;
+    public void setMovimiento_id(String movimientoId) {
+        this.movimiento_id = movimientoId;
     }
 
     public String getConcepto() {

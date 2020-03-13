@@ -1,10 +1,9 @@
-package com.bautista.backend.controller;
+package com.bautista.backend.controller.movimiento;
 
 import com.bautista.backend.model.movimiento.MovimientoRequestModel;
 import com.bautista.backend.model.movimiento.MovimientoResponseModel;
 import com.bautista.backend.service.movimiento.MovimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,7 +22,7 @@ public class MovimientoController {
         return returnValue;
     }
 
-    @PostMapping(value = "/insert-movimento", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(value = "/insert-movimento")
     public void insertMovimiento(@Valid @RequestBody MovimientoRequestModel request){
         service.insert(request);
     }
