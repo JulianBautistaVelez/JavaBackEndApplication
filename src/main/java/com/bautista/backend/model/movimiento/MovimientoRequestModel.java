@@ -14,7 +14,7 @@ public class MovimientoRequestModel {
     @NotNull(message = "Es obligatorio introducir un valor")
     private Float valor;
     @NotNull(message = "Es obligatorio introducir destino al movimiento: caja/banco")
-    private DestinoMovimiento caja_banco;
+    private DestinoMovimiento cajaBanco;
     private Date fecha;
 
     public String getConcepto() {
@@ -41,12 +41,12 @@ public class MovimientoRequestModel {
         this.valor = valor;
     }
 
-    public DestinoMovimiento getCaja_banco() {
-        return caja_banco;
+    public DestinoMovimiento getCajaBanco() {
+        return cajaBanco;
     }
 
-    public void setCaja_banco(DestinoMovimiento caja_banco) {
-        this.caja_banco = caja_banco;
+    public void setCajaBanco(DestinoMovimiento cajaBanco) {
+        this.cajaBanco = cajaBanco;
     }
 
     public Date getFecha() {

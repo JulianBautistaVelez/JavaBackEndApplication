@@ -45,7 +45,13 @@ public class DineroService
     @Override
     public void insert(DineroRequestModel dinero) {
         DineroEntity dineroEntity = modelMapper.map(dinero, DineroEntity.class);
-        dineroEntity.setDinero_id(UUID.randomUUID().toString());
+        dineroEntity.setDineroId(UUID.randomUUID().toString());
         repository.save(dineroEntity);
+    }
+
+    @Override
+    public DineroResponseModel findById(String id) {
+        //TODO implementar
+        return null;
     }
 }

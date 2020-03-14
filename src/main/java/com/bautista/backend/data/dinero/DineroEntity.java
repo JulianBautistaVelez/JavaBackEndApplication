@@ -29,7 +29,7 @@ public class DineroEntity implements Serializable {
     private Date fecha;
 
     @Column
-    private String dinero_id;
+    private String dineroId;
 
     public float getBanco() {
         return banco;
@@ -59,7 +59,7 @@ public class DineroEntity implements Serializable {
 
     public void setId(long id) { this.id = id; }
 
-    public String getDinero_id() { return dinero_id; }
+    public String getDineroId() { return dineroId; }
 
-    public void setDinero_id(String dinero_id) { this.dinero_id = dinero_id; }
+    public void setDineroId(String dineroId) { this.dineroId = dineroId; }
 }

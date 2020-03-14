@@ -10,16 +10,16 @@ public class MovimientoResponseModel {
     private String concepto;
     private TipoMovimiento tipo;
     private Float valor;
-    private DestinoMovimiento caja_banco;
+    private DestinoMovimiento cajaBanco;
     private Date fecha;
-    private String movimiento_id;
+    private String movimientoId;
 
-    public String getMovimiento_id() {
-        return movimiento_id;
+    public String getMovimientoId() {
+        return movimientoId;
     }
 
-    public void setMovimiento_id(String movimientoId) {
-        this.movimiento_id = movimientoId;
+    public void setMovimientoId(String movimientoId) {
+        this.movimientoId = movimientoId;
     }
 
     public String getConcepto() {
@@ -46,12 +46,12 @@ public class MovimientoResponseModel {
         this.valor = valor;
     }
 
-    public DestinoMovimiento getCaja_banco() {
-        return caja_banco;
+    public DestinoMovimiento getCajaBanco() {
+        return cajaBanco;
     }
 
-    public void setCaja_banco(DestinoMovimiento caja_banco) {
-        this.caja_banco = caja_banco;
+    public void setCajaBanco(DestinoMovimiento cajaBanco) {
+        this.cajaBanco = cajaBanco;
     }
 
     public Date getFecha() {

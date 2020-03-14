@@ -37,7 +37,7 @@ public class ClienteEntity implements Serializable {
     private Date fecha;
 
     @Column
-    private String cliente_id;
+    private String clienteId;
 
     public long getId() {
         return id;
@@ -91,9 +91,7 @@ public class ClienteEntity implements Serializable {
         return comentarios;
     }
 
-    public void setComentarios(String comentarios) {
-        this.comentarios = comentarios;
-    }
+    public void setComentarios(String comentarios) { this.comentarios = comentarios; }
 
     public Date getFecha() {
         return fecha;
@@ -103,11 +101,7 @@ public class ClienteEntity implements Serializable {
         this.fecha = fecha;
     }
 
-    public String getCliente_id() {
-        return cliente_id;
-    }
+    public String getClienteId() { return clienteId; }
 
-    public void setCliente_id(String cliente_id) {
-        this.cliente_id = cliente_id;
-    }
+    public void setClienteId(String clienteId) { this.clienteId = clienteId; }
 }

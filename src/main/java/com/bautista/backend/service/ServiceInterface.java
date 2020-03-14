@@ -1,5 +1,9 @@
 package com.bautista.backend.service;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+
 import java.util.List;
 
 /**
@@ -10,7 +14,9 @@ import java.util.List;
  * @param <T2> Object Request Model
  */
 public interface ServiceInterface<T, T2> {
+
     T getLastEntry();
     List<T> getAll();
     void insert(T2 object);
+    T findById(String id);
 }

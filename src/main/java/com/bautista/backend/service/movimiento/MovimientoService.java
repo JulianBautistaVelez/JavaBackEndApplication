@@ -50,4 +50,10 @@ public class MovimientoService
         repository.save(movimientoEntity);
     }
 
+    @Override
+    public MovimientoResponseModel findById(String id) {
+        //TODO implementar
+        return null;
+    }
+
 }

@@ -46,8 +46,14 @@ public class ClienteService
     @Override
     public void insert(ClienteRequestModel cliente) {
         ClienteEntity clienteEntity = modelMapper.map(cliente, ClienteEntity.class);
-        clienteEntity.setCliente_id(UUID.randomUUID().toString());
+        clienteEntity.setClienteId(UUID.randomUUID().toString());
         respository.save(clienteEntity);
+    }
+
+    @Override
+    public ClienteResponseModel findById(String id) {
+        //TODO implementar
+        return null;
     }
 
 

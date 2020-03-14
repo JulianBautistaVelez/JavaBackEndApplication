@@ -11,7 +11,7 @@ public class ClienteResponseModel {
     private String presupuestos;
     private String comentarios;
     private Date fecha;
-    private String cliente_id;
+    private String clienteId;
 
     public String getNombre() {
         return nombre;
@@ -69,11 +69,11 @@ public class ClienteResponseModel {
         this.fecha = fecha;
     }
 
-    public String getCliente_id() {
-        return cliente_id;
+    public String getClienteId() {
+        return clienteId;
     }
 
-    public void setCliente_id(String cliente_id) {
-        this.cliente_id = cliente_id;
+    public void setClienteId(String clienteId) {
+        this.clienteId = clienteId;
     }
 }

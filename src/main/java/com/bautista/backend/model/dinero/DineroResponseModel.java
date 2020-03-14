@@ -7,7 +7,7 @@ public class DineroResponseModel {
     private float banco;
     private float caja;
     private Date fecha;
-    private String dinero_id;
+    private String dineroId;
 
     public float getBanco() {
         return banco;
@@ -33,11 +33,11 @@ public class DineroResponseModel {
         this.fecha = fecha;
     }
 
-    public String getDinero_id() {
-        return dinero_id;
+    public String getDineroId() {
+        return dineroId;
     }
 
-    public void setDinero_id(String dinero_id) {
-        this.dinero_id = dinero_id;
+    public void setDineroId(String dineroId) {
+        this.dineroId = dineroId;
     }
 }
