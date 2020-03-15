@@ -22,8 +22,8 @@ public class FacturaService
     @Autowired
     private FacturaRepository repository;
 
-    @Autowired
-    Environment env;
+//    @Autowired
+//    Environment env;
 
     private FacturaServiceHelper helper;
 

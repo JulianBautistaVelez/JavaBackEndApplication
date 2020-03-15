@@ -26,14 +26,22 @@ public class MovimientoEntity implements Serializable {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private DestinoMovimiento caja_banco;
+    private DestinoMovimiento cajaBanco;
 
     @Column
     @CreationTimestamp
     private Date fecha;
 
     @Column
-    private String movimiento_id;
+    private String movimientoId;
+
+    public MovimientoEntity copy(){
+        MovimientoEntity response = new MovimientoEntity();
+        response.setConcepto(this.getConcepto());
+        response.setTipo(this.getTipo());
+        response.setValor(this.getValor());
+        return response;
+    }
 
     public long getId() {
         return id;
@@ -67,12 +75,12 @@ public class MovimientoEntity implements Serializable {
         this.valor = valor;
     }
 
-    public DestinoMovimiento getCaja_banco() {
-        return caja_banco;
+    public DestinoMovimiento getCajaBanco() {
+        return cajaBanco;
     }
 
-    public void setCaja_banco(DestinoMovimiento caja_banco) {
-        this.caja_banco = caja_banco;
+    public void setCajaBanco(DestinoMovimiento cajaBanco) {
+        this.cajaBanco = cajaBanco;
     }
 
     public Date getFecha() {
@@ -83,7 +91,7 @@ public class MovimientoEntity implements Serializable {
         this.fecha = fecha;
     }
 
-    public String getMovimiento_id() { return movimiento_id; }
+    public String getMovimientoId() { return movimientoId; }
 
-    public void setMovimiento_id(String movimiento_id) { this.movimiento_id = movimiento_id; }
+    public void setMovimientoId(String movimientoId) { this.movimientoId = movimientoId; }
 }

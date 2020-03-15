@@ -31,6 +31,13 @@ public class DineroEntity implements Serializable {
     @Column
     private String dineroId;
 
+    public DineroEntity copy(){
+        DineroEntity response = new DineroEntity();
+        response.setCaja(this.getCaja());
+        response.setBanco(this.getBanco());
+        return response;
+    }
+
     public float getBanco() {
         return banco;
     }
