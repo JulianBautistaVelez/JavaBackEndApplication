@@ -6,6 +6,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+/*TODO pensar en añadir un "estadoMovimiento" que almacene si el movimiento ha sido borrado
+    Para mantener un record de los movimientos aunque hayan sido eliminados, y luego enviarlos
+    a front end o no dependiendo de la situacion
+*/
 @Entity
 @Table(name= "movimientos")
 public class MovimientoEntity implements Serializable {

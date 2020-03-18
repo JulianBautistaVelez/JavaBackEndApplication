@@ -1,6 +1,5 @@
 package com.bautista.backend.data.dinero;
 
-import com.bautista.backend.data.dinero.DineroEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

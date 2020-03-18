@@ -16,6 +16,7 @@ public class MovimientoRequestModel {
     @NotNull(message = "Es obligatorio introducir destino al movimiento: caja/banco")
     private DestinoMovimiento cajaBanco;
     private Date fecha;
+    private String movimientoId;
 
     public String getConcepto() {
         return concepto;
@@ -55,5 +56,13 @@ public class MovimientoRequestModel {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public String getMovimientoId() {
+        return movimientoId;
+    }
+
+    public void setMovimientoId(String movimientoId) {
+        this.movimientoId = movimientoId;
     }
 }

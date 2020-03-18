@@ -73,4 +73,15 @@ public class FacturaService
         FacturaResponseModel response = modelMapper.map(dbData, FacturaResponseModel.class);
         return response;
     }
+
+    @Override
+    public void update(FacturaRequestModel requestModel, String String) {
+
+    }
+
+    @Override
+    public void delete(String id) {
+
+    }
+
 }

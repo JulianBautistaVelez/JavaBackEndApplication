@@ -54,4 +54,16 @@ public class DineroService
         //TODO implementar
         return null;
     }
+
+    @Override
+    public void update(DineroRequestModel requestModel, String String) {
+
+    }
+
+    @Override
+    public void delete(String id) {
+
+    }
+
+
 }

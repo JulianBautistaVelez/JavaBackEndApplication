@@ -28,6 +28,9 @@ public class MovimientoService
     @Autowired
     private DineroRepository dineroRepository;
 
+    @Autowired
+    private MovimientoServiceHelper serviceHelper;
+
     private ModelMapper modelMapper;
 
     public MovimientoService(){
@@ -83,8 +86,33 @@ public class MovimientoService
 
     @Override
     public MovimientoResponseModel findById(String id) {
-        //TODO implementar
-        return null;
+        MovimientoEntity dbData = repository.findByMovimientoId(id);
+        MovimientoResponseModel response = modelMapper.map(dbData, MovimientoResponseModel.class);
+        return response;
+    }
+
+    @Override
+    public void update(MovimientoRequestModel movimiento, String movimientoId) {
+        MovimientoEntity dbData = repository.findByMovimientoId(movimientoId);
+        if(dbData == null) {
+            return;
+        } else {
+            dbData.setConcepto(movimiento.getConcepto());
+            repository.save(dbData);
+        }
+    }
+
+    @Override
+    public void delete(String id) {
+        MovimientoEntity movimientoDeleted =  repository.findByMovimientoId(id);
+        DineroEntity lastState = dineroRepository.findTopByOrderByIdDesc();
+        if( movimientoDeleted != null ){
+            DineroEntity newState = serviceHelper.generateNewDineroUpdate(movimientoDeleted, lastState);
+
+            newState.setDineroId(UUID.randomUUID().toString());
+            dineroRepository.save(newState);
+            repository.delete(movimientoDeleted);
+        }
     }
 
 }

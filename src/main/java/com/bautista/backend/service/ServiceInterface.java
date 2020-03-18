@@ -17,6 +17,9 @@ public interface ServiceInterface<T, T2> {
 
     T getLastEntry();
     List<T> getAll();
-    void insert(T2 object);
+    void insert(T2 requestModel);
     T findById(String id);
+    void update(T2 requestModel, String id);
+    void delete(String id);
+
 }

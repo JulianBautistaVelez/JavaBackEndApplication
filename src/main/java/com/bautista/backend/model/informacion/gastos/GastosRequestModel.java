@@ -1,4 +1,6 @@
 package com.bautista.backend.model.informacion.gastos;
 
-public class GastosRequestModel {
+import com.bautista.backend.model.informacion.InformationRequestModel;
+
+public class GastosRequestModel extends InformationRequestModel {
 }

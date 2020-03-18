@@ -26,4 +26,14 @@ public class MovimientoController {
     public void insertMovimiento(@Valid @RequestBody MovimientoRequestModel request){
         service.insert(request);
     }
+
+    @PutMapping("/update-movimiento/{id}")
+    public void updateMovimiento(@PathVariable("id") String id, @Valid @RequestBody MovimientoRequestModel request){
+        service.update(request, id);
+    }
+
+    @DeleteMapping("/delete-movimiento/{id}")
+    public void deleteMovimiento(@PathVariable("id") String id){
+        service.delete(id);
+    }
 }

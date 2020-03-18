@@ -1,4 +1,6 @@
 package com.bautista.backend.model.informacion.ingresos;
 
-public class IngresosRequestModel {
+import com.bautista.backend.model.informacion.InformationRequestModel;
+
+public class IngresosRequestModel extends InformationRequestModel {
 }

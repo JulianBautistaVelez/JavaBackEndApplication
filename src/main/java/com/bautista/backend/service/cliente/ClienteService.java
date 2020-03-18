@@ -56,5 +56,14 @@ public class ClienteService
         return null;
     }
 
+    @Override
+    public void update(ClienteRequestModel requestModel, String String) {
+
+    }
+
+    @Override
+    public void delete(String id) {
+
+    }
 
 }
