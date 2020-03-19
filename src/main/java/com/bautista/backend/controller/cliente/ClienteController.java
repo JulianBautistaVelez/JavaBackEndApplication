@@ -22,6 +22,9 @@ public class ClienteController {
         return  service.getAll();
     }
 
+    @GetMapping("/get/{id}")
+    public ClienteResponseModel getById(@PathVariable("id") String id) { return service.findById(id);}
+
     @PostMapping("/insert")
     public void insertCliente(@Valid @RequestBody ClienteRequestModel request){
         service.insert(request);
