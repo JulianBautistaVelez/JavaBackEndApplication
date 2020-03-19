@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ClienteRepository extends CrudRepository<ClienteEntity, Long> {
 
+    ClienteEntity findByClienteId(String id);
     List<ClienteEntity> findAllBy();
     ClienteEntity findTopByOrderByIdDesc();
 }

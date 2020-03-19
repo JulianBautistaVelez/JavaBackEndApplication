@@ -16,14 +16,23 @@ public class ClienteController {
     @Autowired
     ClienteService service;
 
-    @GetMapping("/get-todos")
+    @GetMapping("/get")
     public List<ClienteResponseModel> getAll(){
-        List<ClienteResponseModel> returnValue = service.getAll();
-        return  returnValue;
+        return  service.getAll();
     }
 
-    @PostMapping("/insert-cliente")
+    @PostMapping("/insert")
     public void insertCliente(@Valid @RequestBody ClienteRequestModel request){
         service.insert(request);
+    }
+
+    @PutMapping("/update/{id}")
+    public void updateCliente(@PathVariable("id") String id, @RequestBody ClienteRequestModel request){
+        service.update(request, id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteClient(@PathVariable("id") String id){
+        service.delete(id);
     }
 }

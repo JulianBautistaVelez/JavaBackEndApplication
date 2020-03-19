@@ -2,6 +2,7 @@ package com.bautista.backend.service.factura;
 
 import com.bautista.backend.data.factura.factura.FacturaEntity;
 import com.bautista.backend.data.factura.factura.FacturaRepository;
+import com.bautista.backend.data.factura.fila.FilaFacturaEntity;
 import com.bautista.backend.model.factura.factura.FacturaRequestModel;
 import com.bautista.backend.model.factura.factura.FacturaResponseModel;
 import com.bautista.backend.service.ServiceInterface;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
+import java.sql.PreparedStatement;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -21,9 +23,6 @@ public class FacturaService
 
     @Autowired
     private FacturaRepository repository;
-
-//    @Autowired
-//    Environment env;
 
     private FacturaServiceHelper helper;
 
@@ -70,18 +69,29 @@ public class FacturaService
     @Override
     public FacturaResponseModel findById(String id) {
         FacturaEntity dbData = repository.findByFacturaId(id);
-        FacturaResponseModel response = modelMapper.map(dbData, FacturaResponseModel.class);
+        FacturaResponseModel response = null;
+        if(dbData != null){
+            response = modelMapper.map(dbData, FacturaResponseModel.class);
+        }
         return response;
     }
 
     @Override
-    public void update(FacturaRequestModel requestModel, String String) {
-
+    public void update(FacturaRequestModel factura, String id) {
+        FacturaEntity dbData = repository.findByFacturaId(id);
+        if(dbData != null){
+            FacturaEntity facturaEntity = modelMapper.map(factura, FacturaEntity.class);
+            helper.copyFieldsFromTo(facturaEntity, dbData, modelMapper);
+            repository.save(dbData);
+        }
     }
 
     @Override
     public void delete(String id) {
-
+        FacturaEntity facturaDeleted = repository.findByFacturaId(id);
+        if(facturaDeleted != null){
+            repository.delete(facturaDeleted);
+        }
     }
 
 }

@@ -16,24 +16,29 @@ public class MovimientoController {
     @Autowired
     MovimientoService service;
 
-    @GetMapping("/get-todos")
+    @GetMapping("/get")
     public List<MovimientoResponseModel> getAll(){
-        List<MovimientoResponseModel> returnValue = service.getAll();
-        return returnValue;
+        return service.getAll();
     }
 
-    @PostMapping(value = "/insert-movimento")
+    @GetMapping("get/{id}")
+    public MovimientoResponseModel getById(@PathVariable("id") String id){
+        return service.findById(id);
+    }
+
+    @PostMapping(value = "/insert")
     public void insertMovimiento(@Valid @RequestBody MovimientoRequestModel request){
         service.insert(request);
     }
 
-    @PutMapping("/update-movimiento/{id}")
+    @PutMapping("/update/{id}")
     public void updateMovimiento(@PathVariable("id") String id, @Valid @RequestBody MovimientoRequestModel request){
         service.update(request, id);
     }
 
-    @DeleteMapping("/delete-movimiento/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteMovimiento(@PathVariable("id") String id){
         service.delete(id);
     }
+
 }

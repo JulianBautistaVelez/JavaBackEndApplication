@@ -17,19 +17,29 @@ public class FacturaController {
     @Autowired
     FacturaService service;
 
-    @GetMapping("/get-todos")
+    @GetMapping("/get")
     public List<FacturaResponseModel> getAll(){
         List<FacturaResponseModel> returnValue = service.getAll();
         return returnValue;
     }
 
-    @PostMapping("/insert-factura")
+    @PostMapping("/insert")
     public void insertaFactura(@Valid @RequestBody FacturaRequestModel request){
         service.insert(request);
     }
 
     @GetMapping("/get/{id}")
-    public FacturaResponseModel getById(@PathVariable String id){
+    public FacturaResponseModel getById(@PathVariable("id") String id){
         return service.findById(id);
+    }
+
+    @PutMapping("update/{id}")
+    public void updateFactura(@PathVariable("id") String id, @Valid @RequestBody FacturaRequestModel request){
+        service.update(request, id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteFactura(@PathVariable("id") String id){
+        service.delete(id);
     }
 }

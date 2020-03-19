@@ -94,9 +94,7 @@ public class MovimientoService
     @Override
     public void update(MovimientoRequestModel movimiento, String movimientoId) {
         MovimientoEntity dbData = repository.findByMovimientoId(movimientoId);
-        if(dbData == null) {
-            return;
-        } else {
+        if(dbData != null) {
             dbData.setConcepto(movimiento.getConcepto());
             repository.save(dbData);
         }

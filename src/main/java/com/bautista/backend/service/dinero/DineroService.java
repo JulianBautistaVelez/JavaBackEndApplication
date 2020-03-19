@@ -51,18 +51,25 @@ public class DineroService
 
     @Override
     public DineroResponseModel findById(String id) {
-        //TODO implementar
-        return null;
+        DineroEntity dbData = repository.findByDineroId(id);
+        DineroResponseModel response = null;
+        if(dbData != null){
+            response = modelMapper.map(dbData, DineroResponseModel.class);
+        }
+        return response;
     }
 
     @Override
     public void update(DineroRequestModel requestModel, String String) {
-
+        //TODO decidir que hacer aquí
     }
 
     @Override
     public void delete(String id) {
-
+        DineroEntity dineroDeleted = repository.findByDineroId(id);
+        if(dineroDeleted != null){
+            repository.delete(dineroDeleted);
+        }
     }
 
 

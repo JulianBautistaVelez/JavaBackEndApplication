@@ -2,6 +2,9 @@ package com.bautista.backend.service.factura;
 
 import com.bautista.backend.data.factura.factura.FacturaEntity;
 import com.bautista.backend.data.factura.fila.FilaFacturaEntity;
+import org.modelmapper.ModelMapper;
+
+import java.util.Arrays;
 
 public class FacturaServiceHelper {
 
@@ -58,5 +61,22 @@ public class FacturaServiceHelper {
                 ", iva=" + iva +
                 ", total=" + total +
                 '}';
+    }
+
+    public void copyFieldsFromTo(
+            FacturaEntity factura,
+            FacturaEntity dbData,
+            ModelMapper modelMapper){
+        this.calculateExtraInfo(factura);
+        dbData.setNombre(factura.getNombre());
+        dbData.setIva(this.getIva());
+        dbData.setBase(this.getBase());
+        dbData.setCpProvincia(factura.getCpProvincia());
+        dbData.setDireccion(factura.getDireccion());
+        dbData.setFecha(factura.getFecha());
+        dbData.setNif(factura.getNif());
+        dbData.setFilas(
+                Arrays.asList(
+                        modelMapper.map(factura.getFilas(), FilaFacturaEntity[].class)));
     }
 }

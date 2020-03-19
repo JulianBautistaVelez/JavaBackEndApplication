@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.List;
 
 public interface DineroRepository extends CrudRepository<DineroEntity, Long> {
+
+    DineroEntity findByDineroId(String id);
     DineroEntity findTopByOrderByIdDesc();
     List<DineroEntity> findAllBy();
 

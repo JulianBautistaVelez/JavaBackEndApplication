@@ -22,8 +22,10 @@ public class ClienteService
     private ClienteRepository respository;
 
     private ModelMapper modelMapper;
+    private ClienteServiceHelper helper;
 
     public ClienteService(){
+        helper = new ClienteServiceHelper();
         modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
     }
@@ -40,7 +42,7 @@ public class ClienteService
         List<ClienteEntity> dbData = respository.findAllBy();
         List<ClienteResponseModel> response =
                 Arrays.asList(modelMapper.map(dbData, ClienteResponseModel[].class));
-        return null;
+        return response;
     }
 
     @Override
@@ -52,18 +54,30 @@ public class ClienteService
 
     @Override
     public ClienteResponseModel findById(String id) {
-        //TODO implementar
-        return null;
+        ClienteEntity dbData = respository.findByClienteId(id);
+        ClienteResponseModel response = null;
+        if(dbData != null){
+            response = modelMapper.map(dbData, ClienteResponseModel.class);
+        }
+        return response;
     }
 
     @Override
-    public void update(ClienteRequestModel requestModel, String String) {
-
+    public void update(ClienteRequestModel cliente, String id) {
+        ClienteEntity dbData = respository.findByClienteId(id);
+        if(dbData != null){
+            ClienteEntity update = modelMapper.map(cliente, ClienteEntity.class);
+            helper.copyFieldsFromTo(update, dbData);
+            respository.save(dbData);
+        }
     }
 
     @Override
     public void delete(String id) {
-
+        ClienteEntity clienteDeleted = respository.findByClienteId(id);
+        if(clienteDeleted != null){
+            respository.delete(clienteDeleted);
+        }
     }
 
 }
