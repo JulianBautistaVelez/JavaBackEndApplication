@@ -4,12 +4,12 @@ import com.bautista.backend.model.factura.factura.FacturaRequestModel;
 import com.bautista.backend.model.factura.factura.FacturaResponseModel;
 import com.bautista.backend.service.factura.FacturaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("facturas")
 public class FacturaController {

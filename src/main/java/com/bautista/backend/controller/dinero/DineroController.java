@@ -3,6 +3,7 @@ package com.bautista.backend.controller.dinero;
 import com.bautista.backend.model.dinero.DineroResponseModel;
 import com.bautista.backend.service.dinero.DineroService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
     puede ser útil para tener una vista mas clara del estado actual
  */
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("dinero")
 public class DineroController {

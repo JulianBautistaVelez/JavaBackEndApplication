@@ -9,8 +9,7 @@ import com.bautista.backend.service.informacion.InformacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Null;
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("informacion")
 public class InformacionController {
