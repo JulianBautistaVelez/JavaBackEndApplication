@@ -22,4 +22,11 @@ public interface MovimientoRepository extends CrudRepository<MovimientoEntity, L
             @Param("fecha_fin") Date fechaFin,
             @Param("tipo_movimiento") String tipoMovimiento);
 
+    @Query(value = "SELECT * FROM movimientos WHERE " +
+            "fecha BETWEEN :fecha_inicio AND :fecha_fin",
+            nativeQuery = true)
+    List<MovimientoEntity> findRangeOfTime(
+            @Param("fecha_inicio") Date fechaInicio,
+            @Param("fecha_fin") Date fechaFin);
+
 }

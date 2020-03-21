@@ -1,9 +1,9 @@
 package com.bautista.backend.controller.informacion;
 
-import com.bautista.backend.model.informacion.gastos.GastosRequestModel;
+import com.bautista.backend.model.informacion.gastos.GastosROTRequestModel;
 import com.bautista.backend.model.informacion.gastos.GastosResponseModel;
-import com.bautista.backend.model.informacion.ingresos.IngresosRequestModel;
-import com.bautista.backend.model.informacion.liquidez.LiquidezRequestModel;
+import com.bautista.backend.model.informacion.ingresos.IngresosROTRequestModel;
+import com.bautista.backend.model.informacion.liquidez.LiquidezROTRequestModel;
 import com.bautista.backend.model.informacion.liquidez.LiquidezResponseModel;
 import com.bautista.backend.service.informacion.InformacionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class InformacionController {
     InformacionService service;
 
     @GetMapping("/get-liquidez")
-    public LiquidezResponseModel getLiquidez(@RequestBody(required = false) LiquidezRequestModel request){
+    public LiquidezResponseModel getLiquidez(@RequestBody(required = false) LiquidezROTRequestModel request){
         LiquidezResponseModel response;
         if(request == null){
             response = service.getLiquidezInformation();
@@ -29,12 +29,12 @@ public class InformacionController {
     }
 
     @GetMapping("/get-gastos")
-    public GastosResponseModel getGastos(@RequestBody GastosRequestModel request){
+    public GastosResponseModel getGastos(@RequestBody GastosROTRequestModel request){
         return service.getGastos(request);
     }
 
     @GetMapping("/get-ingresos")
-    public GastosResponseModel getIngresos(@RequestBody IngresosRequestModel request){
+    public GastosResponseModel getIngresos(@RequestBody IngresosROTRequestModel request){
         return service.getIngresos(request);
     }
 }

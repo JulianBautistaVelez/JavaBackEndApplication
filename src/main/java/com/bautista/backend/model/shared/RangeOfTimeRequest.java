@@ -1,8 +1,8 @@
-package com.bautista.backend.model.informacion;
+package com.bautista.backend.model.shared;
 
 import java.util.Date;
 
-public class InformationRequestModel {
+public class RangeOfTimeRequest {
     private Date fechaInicio;
     private Date fechaFin;
 

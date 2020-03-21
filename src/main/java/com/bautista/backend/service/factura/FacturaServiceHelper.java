@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 
 import java.util.Arrays;
 
+//TODO repensar esta clase, no debe tener atributos y luego métodos que no tienen nada que ver con ella
 public class FacturaServiceHelper {
 
     private float base;
@@ -20,14 +21,15 @@ public class FacturaServiceHelper {
 
 
     public void calculateExtraInfo(FacturaEntity factura){
-        base = 0;
-        total = 0;
+        this.base = 0;
+        this.total = 0;
+        this.iva = 0;
         for ( FilaFacturaEntity fila: factura.getFilas()
              ) {
-            base += fila.getValorTotal();
-            iva += fila.getValorTotal()* ivaPorcentaje;
+            this.base += fila.getValorTotal();
+            this.iva += fila.getValorTotal()* ivaPorcentaje;
         }
-        total = base + iva;
+        this.total = base + iva;
     }
 
     public float getBase() {
@@ -47,7 +49,7 @@ public class FacturaServiceHelper {
     }
 
     public float getTotal() {
-        return total;
+        return this.total;
     }
 
     public void setTotal(float total) {

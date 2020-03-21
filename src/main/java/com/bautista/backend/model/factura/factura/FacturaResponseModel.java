@@ -15,6 +15,7 @@ public class FacturaResponseModel {
     private String cpProvincia;
     private float base;
     private float iva;
+    private float total;
     private List<FilaResponseModel> filas;
     private String facturaId;
 
@@ -81,6 +82,10 @@ public class FacturaResponseModel {
     public void setIva(float iva) {
         this.iva = iva;
     }
+
+    public float getTotal() { return total; }
+
+    public void setTotal(float total) { this.total = total; }
 
     public List<FilaResponseModel> getFilas() {
         return filas;

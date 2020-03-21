@@ -2,6 +2,7 @@ package com.bautista.backend.controller.movimiento;
 
 import com.bautista.backend.model.movimiento.MovimientoRequestModel;
 import com.bautista.backend.model.movimiento.MovimientoResponseModel;
+import com.bautista.backend.model.shared.RangeOfTimeRequest;
 import com.bautista.backend.service.movimiento.MovimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,11 @@ public class MovimientoController {
         return service.getAll();
     }
 
+    @PostMapping("/get/rot")
+    public List<MovimientoResponseModel> getAllROT(@RequestBody RangeOfTimeRequest request ){
+        return service.getAllROT(request);
+    }
+
     @GetMapping("get/{id}")
     public MovimientoResponseModel getById(@PathVariable("id") String id){
         return service.findById(id);
@@ -40,6 +46,11 @@ public class MovimientoController {
     @DeleteMapping("/delete/{id}")
     public void deleteMovimiento(@PathVariable("id") String id){
         service.delete(id);
+    }
+
+    @PostMapping("/get/{tipoMovimiento}/rot")
+    public List<MovimientoResponseModel> getGastos(@PathVariable("tipoMovimiento") String tipoMovimiento, @Valid @RequestBody RangeOfTimeRequest request){
+        return service.getMovimentosROT(request, tipoMovimiento);
     }
 
 }

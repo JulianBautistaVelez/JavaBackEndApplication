@@ -8,6 +8,7 @@ import com.bautista.backend.data.movimiento.MovimientoRepository;
 import com.bautista.backend.data.movimiento.TipoMovimiento;
 import com.bautista.backend.model.movimiento.MovimientoRequestModel;
 import com.bautista.backend.model.movimiento.MovimientoResponseModel;
+import com.bautista.backend.model.shared.RangeOfTimeRequest;
 import com.bautista.backend.service.ServiceInterface;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -48,8 +49,10 @@ public class MovimientoService
     @Override
     public List<MovimientoResponseModel> getAll() {
         List<MovimientoEntity> dbData = repository.findAllBy();
-        List<MovimientoResponseModel> response =
-                Arrays.asList(modelMapper.map(dbData, MovimientoResponseModel[].class));
+        List<MovimientoResponseModel> response = null;
+        if(dbData != null) {
+            response = Arrays.asList(modelMapper.map(dbData, MovimientoResponseModel[].class));
+        }
         return response;
     }
 
@@ -111,6 +114,24 @@ public class MovimientoService
             dineroRepository.save(newState);
             repository.delete(movimientoDeleted);
         }
+    }
+
+    public List<MovimientoResponseModel> getMovimentosROT(RangeOfTimeRequest request, String tipoMovimiento){
+        List<MovimientoEntity> dbData =  repository.findMovimientosRangeOfTime(request.getFechaInicio(), request.getFechaFin(), tipoMovimiento);
+        List<MovimientoResponseModel> response = null;
+        if( dbData != null){
+            response = Arrays.asList(modelMapper.map(dbData, MovimientoResponseModel[].class));
+        }
+        return response;
+    }
+
+    public List<MovimientoResponseModel> getAllROT(RangeOfTimeRequest request){
+        List<MovimientoEntity> dbData =  repository.findRangeOfTime(request.getFechaInicio(), request.getFechaFin());
+        List<MovimientoResponseModel> response = null;
+        if( dbData != null){
+            response = Arrays.asList(modelMapper.map(dbData, MovimientoResponseModel[].class));
+        }
+        return response;
     }
 
 }

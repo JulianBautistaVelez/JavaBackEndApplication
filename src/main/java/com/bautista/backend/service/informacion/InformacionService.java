@@ -5,10 +5,10 @@ import com.bautista.backend.data.dinero.DineroRepository;
 import com.bautista.backend.data.movimiento.MovimientoEntity;
 import com.bautista.backend.data.movimiento.MovimientoRepository;
 import com.bautista.backend.data.movimiento.TipoMovimiento;
-import com.bautista.backend.model.informacion.gastos.GastosRequestModel;
+import com.bautista.backend.model.informacion.gastos.GastosROTRequestModel;
 import com.bautista.backend.model.informacion.gastos.GastosResponseModel;
-import com.bautista.backend.model.informacion.ingresos.IngresosRequestModel;
-import com.bautista.backend.model.informacion.liquidez.LiquidezRequestModel;
+import com.bautista.backend.model.informacion.ingresos.IngresosROTRequestModel;
+import com.bautista.backend.model.informacion.liquidez.LiquidezROTRequestModel;
 import com.bautista.backend.model.informacion.liquidez.LiquidezResponseModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +35,7 @@ public class InformacionService {
         return response;
     }
 
-    public LiquidezResponseModel getLiquidezInformation(LiquidezRequestModel fechas){
+    public LiquidezResponseModel getLiquidezInformation(LiquidezROTRequestModel fechas){
         LiquidezResponseModel response = new LiquidezResponseModel();
         List<DineroEntity> dineroByDate =
                 dineroRepository.findRangeOfTime(fechas.getFechaInicio(), fechas.getFechaFin());
@@ -47,7 +47,7 @@ public class InformacionService {
         return response;
     }
 
-    public GastosResponseModel getGastos(GastosRequestModel fechas){
+    public GastosResponseModel getGastos(GastosROTRequestModel fechas){
         List<MovimientoEntity> dataToFormat =
                 movimientoRepository.findMovimientosRangeOfTime(
                         fechas.getFechaInicio(),
@@ -57,7 +57,7 @@ public class InformacionService {
         return new GastosResponseModel(dataToFormat);
     }
 
-    public GastosResponseModel getIngresos(IngresosRequestModel fechas){
+    public GastosResponseModel getIngresos(IngresosROTRequestModel fechas){
         List<MovimientoEntity> dataToFormat =
                 movimientoRepository.findMovimientosRangeOfTime(
                         fechas.getFechaInicio(),
