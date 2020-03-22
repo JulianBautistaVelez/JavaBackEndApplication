@@ -12,7 +12,7 @@ public class FilaFacturaEntity implements Serializable {
     @GeneratedValue
     private int id;
 
-    @Column(nullable = false)
+    @Column
     private int facturaReferenciaId;
 
     @Column

@@ -45,7 +45,7 @@ public class FacturaEntity implements Serializable {
     @Column
     private String facturaId;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "facturaReferenciaId")
     private List<FilaFacturaEntity> filas;
 

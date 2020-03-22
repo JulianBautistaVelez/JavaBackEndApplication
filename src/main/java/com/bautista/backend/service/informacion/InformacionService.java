@@ -49,7 +49,7 @@ public class InformacionService {
 
     public GastosResponseModel getGastos(GastosROTRequestModel fechas){
         List<MovimientoEntity> dataToFormat =
-                movimientoRepository.findMovimientosRangeOfTime(
+                movimientoRepository.findMovimientosROT(
                         fechas.getFechaInicio(),
                         fechas.getFechaFin(),
                         TipoMovimiento.gasto.toString());
@@ -59,7 +59,7 @@ public class InformacionService {
 
     public GastosResponseModel getIngresos(IngresosROTRequestModel fechas){
         List<MovimientoEntity> dataToFormat =
-                movimientoRepository.findMovimientosRangeOfTime(
+                movimientoRepository.findMovimientosROT(
                         fechas.getFechaInicio(),
                         fechas.getFechaFin(),
                         TipoMovimiento.ingreso.toString());

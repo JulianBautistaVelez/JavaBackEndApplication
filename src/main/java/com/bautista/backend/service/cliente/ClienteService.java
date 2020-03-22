@@ -4,6 +4,7 @@ import com.bautista.backend.data.cliente.ClienteEntity;
 import com.bautista.backend.data.cliente.ClienteRepository;
 import com.bautista.backend.model.cliente.ClienteRequestModel;
 import com.bautista.backend.model.cliente.ClienteResponseModel;
+import com.bautista.backend.model.shared.RangeOfTimeRequest;
 import com.bautista.backend.service.ServiceInterface;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -43,6 +44,12 @@ public class ClienteService
         List<ClienteResponseModel> response =
                 Arrays.asList(modelMapper.map(dbData, ClienteResponseModel[].class));
         return response;
+    }
+
+    @Override
+    public List<ClienteResponseModel> getAllROT(RangeOfTimeRequest request) {
+        //TODO implementar
+        return null;
     }
 
     @Override

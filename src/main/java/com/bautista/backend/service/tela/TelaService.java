@@ -2,6 +2,7 @@ package com.bautista.backend.service.tela;
 
 import com.bautista.backend.data.tela.TelaEntity;
 import com.bautista.backend.data.tela.TelaRepository;
+import com.bautista.backend.model.shared.RangeOfTimeRequest;
 import com.bautista.backend.model.tela.TelaRequestModel;
 import com.bautista.backend.model.tela.TelaResponseModel;
 import com.bautista.backend.service.ServiceInterface;
@@ -41,6 +42,12 @@ public class TelaService implements ServiceInterface<TelaResponseModel, TelaRequ
         List<TelaResponseModel> response =
                 Arrays.asList(modelMapper.map(dbData, TelaResponseModel[].class));
         return response;
+    }
+
+    @Override
+    public List<TelaResponseModel> getAllROT(RangeOfTimeRequest request) {
+        //TODO implementar
+        return null;
     }
 
     @Override

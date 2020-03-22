@@ -4,6 +4,7 @@ import com.bautista.backend.data.dinero.DineroEntity;
 import com.bautista.backend.data.dinero.DineroRepository;
 import com.bautista.backend.model.dinero.DineroRequestModel;
 import com.bautista.backend.model.dinero.DineroResponseModel;
+import com.bautista.backend.model.shared.RangeOfTimeRequest;
 import com.bautista.backend.service.ServiceInterface;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -39,6 +40,12 @@ public class DineroService
         List<DineroEntity> dbData = repository.findAllBy();
         List<DineroResponseModel> response =
                 Arrays.asList(modelMapper.map(dbData, DineroResponseModel[].class));
+        return null;
+    }
+
+    @Override
+    public List<DineroResponseModel> getAllROT(RangeOfTimeRequest request) {
+        //TODO implementar
         return null;
     }
 

@@ -117,7 +117,7 @@ public class MovimientoService
     }
 
     public List<MovimientoResponseModel> getMovimentosROT(RangeOfTimeRequest request, String tipoMovimiento){
-        List<MovimientoEntity> dbData =  repository.findMovimientosRangeOfTime(request.getFechaInicio(), request.getFechaFin(), tipoMovimiento);
+        List<MovimientoEntity> dbData =  repository.findMovimientosROT(request.getFechaInicio(), request.getFechaFin(), tipoMovimiento);
         List<MovimientoResponseModel> response = null;
         if( dbData != null){
             response = Arrays.asList(modelMapper.map(dbData, MovimientoResponseModel[].class));
@@ -125,8 +125,9 @@ public class MovimientoService
         return response;
     }
 
+    @Override
     public List<MovimientoResponseModel> getAllROT(RangeOfTimeRequest request){
-        List<MovimientoEntity> dbData =  repository.findRangeOfTime(request.getFechaInicio(), request.getFechaFin());
+        List<MovimientoEntity> dbData =  repository.findROT(request.getFechaInicio(), request.getFechaFin());
         List<MovimientoResponseModel> response = null;
         if( dbData != null){
             response = Arrays.asList(modelMapper.map(dbData, MovimientoResponseModel[].class));

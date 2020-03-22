@@ -70,15 +70,39 @@ public class FacturaServiceHelper {
             FacturaEntity dbData,
             ModelMapper modelMapper){
         this.calculateExtraInfo(factura);
-        dbData.setNombre(factura.getNombre());
         dbData.setIva(this.getIva());
         dbData.setBase(this.getBase());
-        dbData.setCpProvincia(factura.getCpProvincia());
-        dbData.setDireccion(factura.getDireccion());
-        dbData.setFecha(factura.getFecha());
-        dbData.setNif(factura.getNif());
-        dbData.setFilas(
-                Arrays.asList(
-                        modelMapper.map(factura.getFilas(), FilaFacturaEntity[].class)));
+        dbData.setTotal(this.getTotal());
+
+        if(factura.getNumeroIdentificador() != null ){
+            dbData.setNumeroIdentificador(factura.getNumeroIdentificador());
+        }
+
+        if(factura.getNombre() != null ){
+            dbData.setNombre(factura.getNombre());
+        }
+
+        if(factura.getCpProvincia() != null){
+            dbData.setCpProvincia(factura.getCpProvincia());
+        }
+
+        if(factura.getDireccion() != null){
+            dbData.setDireccion(factura.getDireccion());
+        }
+
+        if(factura.getFecha() != null){
+            dbData.setFecha(factura.getFecha());
+        }
+
+        if(factura.getNif() != null){
+            dbData.setNif(factura.getNif());
+        }
+
+        if(factura.getFilas() != null){
+            dbData.setFilas(
+                    Arrays.asList(
+                            modelMapper.map(factura.getFilas(), FilaFacturaEntity[].class)));
+        }
+
     }
 }
