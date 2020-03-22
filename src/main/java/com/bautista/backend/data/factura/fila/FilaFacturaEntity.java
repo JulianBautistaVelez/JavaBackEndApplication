@@ -1,6 +1,8 @@
 package com.bautista.backend.data.factura.fila;
 
 
+import com.bautista.backend.data.factura.factura.FacturaEntity;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -12,8 +14,8 @@ public class FilaFacturaEntity implements Serializable {
     @GeneratedValue
     private int id;
 
-    @Column
-    private int facturaReferenciaId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private FacturaEntity facturaReferenciaId;
 
     @Column
     private String concepto;
@@ -35,11 +37,11 @@ public class FilaFacturaEntity implements Serializable {
         this.id = id;
     }
 
-    public int getFacturaReferenciaId() {
+    public FacturaEntity getFacturaReferenciaId() {
         return facturaReferenciaId;
     }
 
-    public void setFacturaReferenciaId(int facturaReferenciaId) {
+    public void setFacturaReferenciaId(FacturaEntity facturaReferenciaId) {
         this.facturaReferenciaId = facturaReferenciaId;
     }
 
@@ -73,6 +75,18 @@ public class FilaFacturaEntity implements Serializable {
 
     public void setValorTotal(float valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof FilaFacturaEntity )) return false;
+        return id != 0 && id == (((FilaFacturaEntity) o).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return facturaReferenciaId.hashCode();
     }
 
 }
