@@ -72,8 +72,9 @@ public class TelaService implements ServiceInterface<TelaResponseModel, TelaRequ
         TelaEntity dbData = repository.findByTelaId(id);
         if(dbData != null){
             TelaEntity update = modelMapper.map(tela, TelaEntity.class);
-            helper.copyFieldsFromTo(update, dbData);
-            repository.save(dbData);
+            update.setTelaId(id);
+            repository.delete(dbData);
+            repository.save(update);
         }
 
     }

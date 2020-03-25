@@ -28,10 +28,13 @@ public class TelaEntity implements Serializable {
     private float precioCliente;
 
     @Column
-    private String tipoTela;
+    private String tipo;
 
     @Column
     private String proveedor;
+
+    @Column
+    private String comentarios;
 
     @Column
     private String telaId;
@@ -76,12 +79,12 @@ public class TelaEntity implements Serializable {
         this.precioCliente = precioCliente;
     }
 
-    public String getTipoTela() {
-        return tipoTela;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTipoTela(String tipoTela) {
-        this.tipoTela = tipoTela;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getProveedor() {
@@ -91,6 +94,10 @@ public class TelaEntity implements Serializable {
     public void setProveedor(String proveedor) {
         this.proveedor = proveedor;
     }
+
+    public String getComentarios() { return comentarios; }
+
+    public void setComentarios(String comentarios) { this.comentarios = comentarios; }
 
     public String getTelaId() {
         return telaId;

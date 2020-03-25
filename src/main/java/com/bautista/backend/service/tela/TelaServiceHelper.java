@@ -16,8 +16,8 @@ public class TelaServiceHelper {
             dbData.setPrecioProveedor(update.getPrecioProveedor());
         }
 
-        if(update.getTipoTela() != null){
-            dbData.setTipoTela(update.getTipoTela());
+        if(update.getTipo() != null){
+            dbData.setTipo(update.getTipo());
         }
 
         if(update.getProveedor() != null){
