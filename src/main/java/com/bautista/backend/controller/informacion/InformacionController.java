@@ -9,6 +9,7 @@ import com.bautista.backend.service.informacion.InformacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("informacion")
@@ -28,12 +29,12 @@ public class InformacionController {
         return response;
     }
 
-    @GetMapping("/get-gastos")
+    @PostMapping("/get-gastos")
     public GastosResponseModel getGastos(@RequestBody GastosROTRequestModel request){
         return service.getGastos(request);
     }
 
-    @GetMapping("/get-ingresos")
+    @PostMapping("/get-ingresos")
     public GastosResponseModel getIngresos(@RequestBody IngresosROTRequestModel request){
         return service.getIngresos(request);
     }
