@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RestController
 @RequestMapping("movimientos")
 public class MovimientoController {
@@ -31,6 +31,14 @@ public class MovimientoController {
     @GetMapping("get/{id}")
     public MovimientoResponseModel getById(@PathVariable("id") String id){
         return service.findById(id);
+    }
+
+    @PostMapping(value = "insert/multiple")
+    public void insertMultipleMovimiento(@Valid @RequestBody MovimientoRequestModel[] request){
+        for (MovimientoRequestModel movimiento: request ) {
+            service.insert(movimiento);
+        }
+
     }
 
     @PostMapping(value = "/insert")

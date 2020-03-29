@@ -38,4 +38,5 @@ public class InformacionController {
     public GastosResponseModel getIngresos(@RequestBody IngresosROTRequestModel request){
         return service.getIngresos(request);
     }
+
 }
