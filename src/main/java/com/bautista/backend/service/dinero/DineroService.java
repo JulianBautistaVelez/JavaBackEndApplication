@@ -2,13 +2,8 @@ package com.bautista.backend.service.dinero;
 
 import com.bautista.backend.data.dinero.DineroEntity;
 import com.bautista.backend.data.dinero.DineroRepository;
-import com.bautista.backend.data.movimiento.DestinoMovimiento;
-import com.bautista.backend.data.movimiento.MovimientoEntity;
-import com.bautista.backend.data.movimiento.MovimientoRepository;
-import com.bautista.backend.data.movimiento.TipoMovimiento;
 import com.bautista.backend.model.dinero.DineroRequestModel;
 import com.bautista.backend.model.dinero.DineroResponseModel;
-import com.bautista.backend.model.dinero.TransferenciaRequestModel;
 import com.bautista.backend.model.shared.RangeOfTimeRequest;
 import com.bautista.backend.service.ServiceInterface;
 import org.modelmapper.ModelMapper;
@@ -17,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
-import java.util.EnumMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,14 +22,8 @@ public class DineroService
     @Autowired
     DineroRepository dineroRepository;
 
-    @Autowired
-    MovimientoRepository movimientoRepository;
-
-    DineroServiceHelper helper;
-
     private ModelMapper modelMapper;
     public DineroService(){
-        helper = new DineroServiceHelper();
         modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
     }
@@ -90,16 +78,5 @@ public class DineroService
             dineroRepository.delete(dineroDeleted);
         }
     }
-
-    public void transferDinero(TransferenciaRequestModel transferencia){
-        EnumMap<DestinoMovimiento, MovimientoEntity> movimientos =
-                new EnumMap<DestinoMovimiento, MovimientoEntity>(DestinoMovimiento.class);
-        DineroServiceHelper.generaMovimientosTransferencia(transferencia, movimientos);
-
-        if(movimientoRepository.save(movimientos.get(DestinoMovimiento.banco)) != null){
-            movimientoRepository.save(movimientos.get(DestinoMovimiento.caja));
-        }
-    }
-
 
 }

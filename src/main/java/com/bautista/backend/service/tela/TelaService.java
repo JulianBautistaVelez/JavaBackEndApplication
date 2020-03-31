@@ -22,7 +22,6 @@ public class TelaService implements ServiceInterface<TelaResponseModel, TelaRequ
     TelaRepository repository;
 
     private ModelMapper modelMapper;
-    private TelaServiceHelper helper;
 
     public TelaService(){
         modelMapper = new ModelMapper();
