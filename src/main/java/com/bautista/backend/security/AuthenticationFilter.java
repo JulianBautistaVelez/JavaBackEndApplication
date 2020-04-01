@@ -8,9 +8,11 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -22,13 +24,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 
-    @Autowired
     UsuarioService usuarioService;
+    Environment environment;
 
     @Autowired
-    Environment environment;
+    public AuthenticationFilter (
+            UsuarioService usuarioService,
+            Environment environment,
+            AuthenticationManager authenticationManager){
+        super();
+        this.usuarioService = usuarioService;
+        this.environment = environment;
+        super.setAuthenticationManager(authenticationManager);
+    }
 
     @Override
     public Authentication attemptAuthentication(
@@ -60,7 +70,6 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
             FilterChain chain,
             Authentication authResult) throws IOException, ServletException {
 
-        //TODO REVISAR
         String userName = ((User) authResult.getPrincipal()).getUsername();
 
         UsuarioEntity usuario = usuarioService.getUsuarioByNombre(userName);
@@ -71,16 +80,12 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                         new Date(
                                 System.currentTimeMillis() +
                                         Long.parseLong(
-                                                "60480000"
-                                                //environment.getProperty("token.expiration.time")
+                                                environment.getProperty("token.expiration.time")
                                         )
                         )
                 )
                 .signWith(
-                        SignatureAlgorithm.HS512, environment.getProperty(
-                                "354sad123lmjad1251222a123<"
-                                //"token.secret.signature"
-                        )
+                        SignatureAlgorithm.HS512, environment.getProperty("token.secret.signature")
                 )
                 .compact();
 
