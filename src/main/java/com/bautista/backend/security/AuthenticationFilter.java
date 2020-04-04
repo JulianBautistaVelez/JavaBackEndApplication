@@ -12,7 +12,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -28,15 +27,18 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 
     UsuarioService usuarioService;
     Environment environment;
+    ObjectMapper objectMapper;
 
     @Autowired
     public AuthenticationFilter (
             UsuarioService usuarioService,
             Environment environment,
-            AuthenticationManager authenticationManager){
+            AuthenticationManager authenticationManager,
+            ObjectMapper objectMapper){
         super();
         this.usuarioService = usuarioService;
         this.environment = environment;
+        this.objectMapper = objectMapper;
         super.setAuthenticationManager(authenticationManager);
     }
 
@@ -89,7 +91,10 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
                 )
                 .compact();
 
+        response.addHeader("access-control-expose-headers", "*");
+        response.addHeader("Access-Control-Allow-Headers", "*");
         response.addHeader("token",token);
         response.addHeader("usuarioId", usuario.getUsuarioId());
+        objectMapper.writeValue(response.getWriter(), "Login existoso");
     }
 }

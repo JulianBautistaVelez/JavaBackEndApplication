@@ -1,6 +1,7 @@
 package com.bautista.backend.security;
 
 import com.bautista.backend.service.usuario.UsuarioService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -48,7 +49,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     }
 
     private AuthenticationFilter getAuthenticationFilter() throws Exception{
-        AuthenticationFilter authenticationFilter = new AuthenticationFilter(usuarioService, environment, authenticationManager());
+        ObjectMapper objectMapper = new ObjectMapper();
+        AuthenticationFilter authenticationFilter = new AuthenticationFilter(usuarioService, environment, authenticationManager(), objectMapper);
         authenticationFilter.setFilterProcessesUrl(environment.getProperty("login.url.path"));
         return authenticationFilter;
     }
