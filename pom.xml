@@ -11,7 +11,7 @@
 	<groupId>com.bautista</groupId>
 	<artifactId>backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>backend</name>
 	<description>Back end for an angular App</description>
 
@@ -84,6 +84,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<finalName>api-taller-bautista</finalName>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
