@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("informacion")
+@RequestMapping("api/informacion")
 public class InformacionController {
 
     @Autowired

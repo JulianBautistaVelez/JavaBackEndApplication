@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(
-        value = "clientes",
+        value = "api/clientes",
         produces = MediaType.APPLICATION_JSON_VALUE
 )
 public class ClienteController {

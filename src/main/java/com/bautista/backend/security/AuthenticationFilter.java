@@ -59,9 +59,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
                             new ArrayList<>()
                     )
             );
-
         } catch (IOException exc){
-            throw new RuntimeException(exc);
+            throw new RuntimeException("Usuario o contraseña erroneo",exc);
         }
     }
 
@@ -91,10 +90,11 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
                 )
                 .compact();
 
+//        objectMapper.writeValue(response.getWriter(), usuario.getUsuarioId());
         response.addHeader("access-control-expose-headers", "*");
-        response.addHeader("Access-Control-Allow-Headers", "*");
+        response.addHeader("Access-Control-Allow-Origin", "*");
         response.addHeader("token",token);
         response.addHeader("usuarioId", usuario.getUsuarioId());
-        objectMapper.writeValue(response.getWriter(), "Login existoso");
+
     }
 }

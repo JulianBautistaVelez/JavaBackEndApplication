@@ -11,7 +11,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("telas")
+@RequestMapping("api/telas")
 public class TelaController {
 
     @Autowired

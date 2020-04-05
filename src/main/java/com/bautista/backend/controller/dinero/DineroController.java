@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(
-        value="dinero",
+        value="api/dinero",
         produces = MediaType.APPLICATION_JSON_VALUE
 )
 public class DineroController {

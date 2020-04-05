@@ -12,7 +12,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("facturas")
+@RequestMapping("api/facturas")
 public class FacturaController {
 
     @Autowired

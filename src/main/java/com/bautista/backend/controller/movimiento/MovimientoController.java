@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RestController
-@RequestMapping("movimientos")
+@RequestMapping("api/movimientos")
 public class MovimientoController {
 
     @Autowired
