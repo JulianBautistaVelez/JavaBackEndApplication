@@ -90,9 +90,6 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
                 )
                 .compact();
 
-//        objectMapper.writeValue(response.getWriter(), usuario.getUsuarioId());
-        response.addHeader("access-control-expose-headers", "*");
-        response.addHeader("Access-Control-Allow-Origin", "*");
         response.addHeader("token",token);
         response.addHeader("usuarioId", usuario.getUsuarioId());
 

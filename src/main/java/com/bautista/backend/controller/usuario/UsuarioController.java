@@ -24,5 +24,4 @@ public class UsuarioController {
         this.service.createUser(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body("Usuario Creado");
     }
-
 }

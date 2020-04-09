@@ -1,5 +1,7 @@
 package com.bautista.backend.configuration;
 
+import com.bautista.backend.data.dinero.DineroEntity;
+import com.bautista.backend.data.dinero.DineroRepository;
 import com.bautista.backend.data.usuario.UsuarioEntity;
 import com.bautista.backend.data.usuario.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +21,34 @@ import java.util.logging.Logger;
 public class ApplicationInitializer implements ApplicationListener<WebServerInitializedEvent > {
     private static final Logger logger = Logger.getLogger(ApplicationInitializer.class.getName());
 
+    @Autowired
     UsuarioRepository usuarioRepository;
-    Environment environment;
-    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public ApplicationInitializer(
-            UsuarioRepository usuarioRepository,
-            Environment environment,
-            BCryptPasswordEncoder bCryptPasswordEncoder){
-        super();
-        this.usuarioRepository = usuarioRepository;
-        this.environment = environment;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
+    DineroRepository dineroRepository;
+
+    @Autowired
+    Environment environment;
+
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public void onApplicationEvent(WebServerInitializedEvent WebServerInitializedEvent) {
+        createFirstDineroState();
+        createFirstUser();
+    }
+
+    private void createFirstDineroState(){
+        DineroEntity dineroEntity = new DineroEntity();
+
+        dineroEntity.setCaja(0f);
+        dineroEntity.setBanco(0f);
+
+        dineroRepository.save(dineroEntity);
+    }
+
+    private void createFirstUser(){
         UsuarioEntity usuarioUnico = new UsuarioEntity();
         usuarioUnico.setEncryptedPassword(bCryptPasswordEncoder.encode(environment.getProperty("user.plain.password")));
         usuarioUnico.setNombre(environment.getProperty("user.username"));

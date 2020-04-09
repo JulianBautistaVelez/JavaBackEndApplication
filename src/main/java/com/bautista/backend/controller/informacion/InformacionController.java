@@ -9,8 +9,6 @@ import com.bautista.backend.service.informacion.InformacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("api/informacion")
 public class InformacionController {

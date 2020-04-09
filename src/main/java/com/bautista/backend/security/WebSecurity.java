@@ -14,6 +14,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -36,8 +40,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.csrf().disable();
-        http.cors().disable();
-        http.headers().frameOptions().disable();
+        http.headers()
+                .frameOptions().disable();
 
         http.authorizeRequests()
                 .antMatchers(environment.getProperty("h2.console.path")).permitAll()
@@ -45,9 +49,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 //.antMatchers(environment.getProperty("actuator.url.path")).permitAll()
                 .anyRequest().authenticated()
                 .and()
+                .addFilterBefore(getCorsFilter(), ChannelProcessingFilter.class)
                 .addFilter(getAuthenticationFilter())
                 .addFilter(getAuthorizationFilter())
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
 
     }
 
@@ -63,9 +69,22 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         return authorizationFilter;
     }
 
+    private CorsFilter getCorsFilter(){
+        CorsFilter corsFilter = new CorsFilter();
+        return corsFilter;
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(usuarioService).passwordEncoder(bCryptPasswordEncoder);
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
     @Bean

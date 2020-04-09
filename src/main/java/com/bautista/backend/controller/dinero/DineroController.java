@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
     puede ser útil para tener una vista mas clara del estado actual
  */
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(
         value="api/dinero",
