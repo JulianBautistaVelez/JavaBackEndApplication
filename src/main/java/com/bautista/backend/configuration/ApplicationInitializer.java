@@ -40,22 +40,26 @@ public class ApplicationInitializer implements ApplicationListener<WebServerInit
     }
 
     private void createFirstDineroState(){
-        DineroEntity dineroEntity = new DineroEntity();
+        if(dineroRepository.count() == 0){
+            DineroEntity dineroEntity = new DineroEntity();
 
-        dineroEntity.setCaja(0f);
-        dineroEntity.setBanco(0f);
+            dineroEntity.setCaja(0f);
+            dineroEntity.setBanco(0f);
 
-        dineroRepository.save(dineroEntity);
+            dineroRepository.save(dineroEntity);
+        }
     }
 
     private void createFirstUser(){
-        UsuarioEntity usuarioUnico = new UsuarioEntity();
-        usuarioUnico.setEncryptedPassword(bCryptPasswordEncoder.encode(environment.getProperty("user.plain.password")));
-        usuarioUnico.setNombre(environment.getProperty("user.username"));
-        usuarioUnico.setUsuarioId(UUID.randomUUID().toString());
+        if(usuarioRepository.count() == 0){
+            UsuarioEntity usuarioUnico = new UsuarioEntity();
+            usuarioUnico.setEncryptedPassword(bCryptPasswordEncoder.encode(environment.getProperty("user.plain.password")));
+            usuarioUnico.setNombre(environment.getProperty("user.username"));
+            usuarioUnico.setUsuarioId(UUID.randomUUID().toString());
 
-        logger.log(Level.ALL, "Creando usuario unico");
+            logger.log(Level.ALL, "Creando usuario unico");
 
-        usuarioRepository.save(usuarioUnico);
+            usuarioRepository.save(usuarioUnico);
+        }
     }
 }

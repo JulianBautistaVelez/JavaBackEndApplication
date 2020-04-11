@@ -16,7 +16,7 @@ public class InformacionController {
     @Autowired
     InformacionService service;
 
-    @GetMapping("/get-liquidez")
+    @GetMapping("/get/liquidez")
     public LiquidezResponseModel getLiquidez(@RequestBody(required = false) LiquidezROTRequestModel request){
         LiquidezResponseModel response;
         if(request == null){
@@ -27,12 +27,12 @@ public class InformacionController {
         return response;
     }
 
-    @PostMapping("/get-gastos")
+    @PostMapping("/get/gastos")
     public GastosResponseModel getGastos(@RequestBody GastosROTRequestModel request){
         return service.getGastos(request);
     }
 
-    @PostMapping("/get-ingresos")
+    @PostMapping("/get/ingresos")
     public GastosResponseModel getIngresos(@RequestBody IngresosROTRequestModel request){
         return service.getIngresos(request);
     }

@@ -22,7 +22,7 @@ public class DineroController {
     @Autowired
     DineroService dineroService;
 
-    @GetMapping("/get-dinero-actual")
+    @GetMapping("/get/actual")
     public ResponseEntity getDineroActual(){
         DineroResponseModel returnValue = dineroService.getLastEntry();
         return ResponseEntity.status(HttpStatus.OK).body(returnValue);
