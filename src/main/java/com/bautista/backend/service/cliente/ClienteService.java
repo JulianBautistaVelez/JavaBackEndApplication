@@ -22,8 +22,8 @@ public class ClienteService
     @Autowired
     private ClienteRepository respository;
 
-    private ModelMapper modelMapper;
-    private ClienteServiceHelper helper;
+    private final ModelMapper modelMapper;
+    private final ClienteServiceHelper helper;
 
     public ClienteService(){
         helper = new ClienteServiceHelper();
@@ -34,16 +34,14 @@ public class ClienteService
     @Override
     public ClienteResponseModel getLastEntry() {
         ClienteEntity dbData = respository.findTopByOrderByIdDesc();
-        ClienteResponseModel response = modelMapper.map(dbData, ClienteResponseModel.class);
-        return response;
+        return modelMapper.map(dbData, ClienteResponseModel.class);
     }
 
     @Override
     public List<ClienteResponseModel> getAll() {
         List<ClienteEntity> dbData = respository.findAllBy();
-        List<ClienteResponseModel> response =
-                Arrays.asList(modelMapper.map(dbData, ClienteResponseModel[].class));
-        return response;
+        return Arrays.asList(modelMapper.map(dbData, ClienteResponseModel[].class));
+
     }
 
     @Override
