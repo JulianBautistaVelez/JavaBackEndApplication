@@ -13,6 +13,8 @@ public class MovimientoResponseModel {
     private DestinoMovimiento cajaBanco;
     private Date fecha;
     private String movimientoId;
+    private Boolean deducible;
+    private String descripcion;
 
     public String getMovimientoId() {
         return movimientoId;
@@ -61,4 +63,12 @@ public class MovimientoResponseModel {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    public Boolean getDeducible() { return deducible; }
+
+    public void setDeducible(Boolean deducible) { this.deducible = deducible; }
+
+    public String getDescripcion() { return descripcion; }
+
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 }

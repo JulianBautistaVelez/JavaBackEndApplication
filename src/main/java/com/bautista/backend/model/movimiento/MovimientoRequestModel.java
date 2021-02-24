@@ -17,6 +17,8 @@ public class MovimientoRequestModel {
     private DestinoMovimiento cajaBanco;
     private Date fecha;
     private String movimientoId;
+    private Boolean deducible;
+    private String descripcion;
 
     public String getConcepto() {
         return concepto;
@@ -65,4 +67,12 @@ public class MovimientoRequestModel {
     public void setMovimientoId(String movimientoId) {
         this.movimientoId = movimientoId;
     }
+
+    public Boolean getDeducible() { return deducible; }
+
+    public void setDeducible(Boolean deducible) { this.deducible = deducible; }
+
+    public String getDescripcion() { return descripcion; }
+
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 }

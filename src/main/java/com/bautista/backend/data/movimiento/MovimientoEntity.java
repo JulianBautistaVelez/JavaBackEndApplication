@@ -39,11 +39,19 @@ public class MovimientoEntity implements Serializable {
     @Column
     private String movimientoId;
 
+    @Column
+    private Boolean deducible;
+
+    @Column
+    private String descripcion;
+
     public MovimientoEntity copy(){
         MovimientoEntity response = new MovimientoEntity();
         response.setConcepto(this.getConcepto());
         response.setTipo(this.getTipo());
         response.setValor(this.getValor());
+        response.setDeducible(this.getDeducible());
+        response.setDescripcion(this.getDescripcion());
         return response;
     }
 
@@ -98,4 +106,12 @@ public class MovimientoEntity implements Serializable {
     public String getMovimientoId() { return movimientoId; }
 
     public void setMovimientoId(String movimientoId) { this.movimientoId = movimientoId; }
+
+    public Boolean getDeducible() {return deducible;}
+
+    public void setDeducible(Boolean deducible) {this.deducible = deducible;}
+
+    public String getDescripcion() {return descripcion;}
+
+    public void setDescripcion(String descripcion) {this.descripcion = descripcion;}
 }
