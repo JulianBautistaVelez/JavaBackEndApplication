@@ -35,4 +35,9 @@ public class ResumenEntity implements Serializable {
     @Column(nullable = false)
     private float deducible;
 
+    @Column()
+    private String comentario;
+
+    @Column
+    private String resumenId;
 }

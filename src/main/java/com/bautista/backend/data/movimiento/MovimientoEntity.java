@@ -39,7 +39,7 @@ public class MovimientoEntity implements Serializable {
     @Column
     private String movimientoId;
 
-    @Column
+    @Column(columnDefinition = "boolean default false")
     private Boolean deducible;
 
     @Column
